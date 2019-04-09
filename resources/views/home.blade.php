@@ -17,7 +17,7 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
-<body class="bg-light">
+<body class="bg-light" style="position: relative;">
 <div class="container">
     <div class="row">
         <div class="col py-5 text-center">
@@ -51,31 +51,30 @@
     <div class="row">
         <div class="col">
             @if (isset($prediction))
-                <table class="table table-striped">
-                    <thead class="thead-dark">
-                    <tr>
-                        <th></th>
-                        <th>Id</th>
-                        <th>Categoría</th>
-                        <th class="text-right" cd>Probabilidad</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($prediction->path()->reverse() as $index => $predictionCategory)
-                        <tr>
-                            <td><strong>#{{ $index + 1 }}</strong></td>
-                            <td>{{ $predictionCategory->id() }}</td>
-                            <td>
-                                {{ $predictionCategory->name() }}
-                            </td>
-                            <td class="text-right">
-                                {{ round($predictionCategory->predictionProbability() * 100, 3) }}%
-                            </td>
-                        </tr>
-                    @endforeach
-                    </tbody>
-                </table>
+                @include('table')
             @endif
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="row">
+        <div class="col text-center pl-5 mt-5">
+            <h4 class="text-left">web.php</h4>
+
+            <pre class="text-left">
+                <code>{!! highlight_string(file_get_contents(base_path('routes/web.php')), true) !!}</code>
+            </pre>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col text-center pl-5">
+            <h4 class="text-left">table.blade.php</h4>
+
+            <pre class="text-left">
+                <code>{!! highlight_string(file_get_contents(base_path('resources/views/table.blade.php')), true) !!}</code>
+            </pre>
         </div>
     </div>
 </div>
