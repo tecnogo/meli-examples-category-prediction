@@ -11,6 +11,6 @@ $router
 
         return view('home', [
             'item_title' => $itemTitle,
-            'prediction' => (new Tecnogo\MeliSdk\Client())->predictCategory($itemTitle)
+            'prediction' => Tecnogo\MeliSdk\Client::create()->predictCategory($itemTitle)
         ]);
     });
